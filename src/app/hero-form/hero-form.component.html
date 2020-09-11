@@ -1,12 +1,14 @@
 <div>
-    <form>
+
+    <div>
           <div class="form-group">
             <label for="weight">Weight:
-              <input placeholder="weight" class="form-control" id="weight"
+              <input placeholder="weight" type="number" [(ngModel)]="formValue.weight" class="form-control" min="0" id="weight"
+                     (change)="validateWeight()"
                      required/>
-                <div [hidden]=""
+                <div *ngIf="formErrors.weight"
                  class="alert alert-danger">
-                  weight must be number
+                  weight is invalid
                 </div>
             </label>
           </div>
@@ -19,8 +21,12 @@
           </div>
           <div class="form-group">
             <label for="email">Email:
-              <input placeholder="carer@gmail.com" type="text" class="form-control" id="email"/>
+              <input [(ngModel)]="formValue.email" class="form-control" id="email" maxlength="22" (change)="ValidateEmail()"/>
+              <div *ngIf="formErrors.email"
+                   class="alert alert-danger">
+               Email is invalid
+              </div>
             </label>
           </div>
-    </form>
+    </div>
 </div>
